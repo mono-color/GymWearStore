@@ -32,58 +32,45 @@
 
 @import "components/products-list.css";
 
-
-
+@import "components/data-chart.css";
 
 a {
-	text-decoration: none;
-	color: black;
+  text-decoration: none;
+  color: black;
 }
 
-a>i {
-	cursor: pointer;
+a > i {
+  cursor: pointer;
 }
 
-body {
-	height: 100%
-}
+/* body {
+  height: 100%;
+} */
 
 .index-body {
-	background-color: rgb(139, 139, 139);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	/* height: 1600px; */
-	/* 높이 100으로 바꾸기 */
-	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: rgb(139, 139, 139);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.home-body {
-	background-color: rgb(139, 139, 139);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	/* height: 500vh; */
-	/* 높이 100으로 바꾸기 */
-	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-	margin-top: 155px;
-}
+
 
 body #page-header {
-	z-index: 3;
+  z-index: 3;
 }
 
 body .wrap {
-	z-index: 1;
+  z-index: 1;
 }
 
 .wrap .nav {
-	z-index: 2;
+  z-index: 2;
 }
 
 .wrap .map-contents {
-	z-index: 1;
+  z-index: 1;
 }
-

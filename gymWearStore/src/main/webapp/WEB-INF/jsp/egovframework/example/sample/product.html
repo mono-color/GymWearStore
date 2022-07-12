@@ -28,7 +28,7 @@
 				class="fas fa-sign-out-alt fa-2x"></i>
 			</a> <a class="header__link" href="login.do"> <i
 				class="fas fa-user-check fa-2x"></i>
-			</a> <a class="header__link" href="join.do"> <i
+			</a> <a class="header__link" href=""> <i
 				class="fas fa-shopping-cart fa-2x"></i> <i></i>
 			</a>
 		</div>
@@ -159,8 +159,9 @@
 					output += '    <div class="prod-info-column">';
 					output += '        <div class="prod-info__name">'+ prodParse[i].name +'</div>';
 					output += '        <div class="prod-info__price">'+ prodParse[i].price +'</div>';
-					output += '        <button class="prod-info__order">주문하기</button>';
-					output += '        <button class="prod-info__cart">장바구니 추가</button>';
+					output += '        <button onclick="memOrder()" type="button" class="prod-info__order">주문하기</button>';
+					output += '        <button onclick="nonmemOrder()" type="button" class="prod-info__order">비회원 주문</button>';
+					output += '        <button onclick="addCart()" type="button" class="prod-info__cart">장바구니 추가</button>';
 					output += '    </div>';
 					output += '</div>';
 				}
@@ -188,6 +189,22 @@
 				location.href = "/gymWearStore/login.do";
 			} else {
 				alert("로그아웃을 취소하셨습니다.");
+			}
+		}
+		
+		function memOrder(){
+			if(sessionStorage.getItem("mem_id") === null ){
+				alert("주문을 위해 로그인을 해주세요");
+			}else{
+				alert("정말 구매하시겠습니까? (추후 제작)");
+			}
+		}
+
+		function addCart(){
+			if(sessionStorage.getItem("mem_id") === null ){
+				alert("로그인을 해주세요");
+			}else{
+				alert("장바구니에 추가하시겠습니까? (추후 제작)");
 			}
 		}
 	</script>
