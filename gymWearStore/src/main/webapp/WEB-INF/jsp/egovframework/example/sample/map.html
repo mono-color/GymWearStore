@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="./images/main-icon.png" />
+<link rel="stylesheet" href="./css/style.css" />
+<meta charset="UTF-8" />
+<title>지점위치 | Gym Wear Store</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+	
+</script>
+</head>
+
+<body class="home-body">
+	<header id="page-header">
+		<div class="page-header-column">
+			<a class="header__link" href="home.do"> <i
+				class="fas fa-dumbbell fa-2x"></i>
+				<p>OMSR</p>
+			</a>
+		</div>
+		<div class="page-header-column">
+			<h1 class="home-page__name">Gym Wear Store</h1>
+		</div>
+		<div class="page-header-column">
+			<a class="header__link" href="login.do" onclick="fn_logout()"> <i
+				class="fas fa-sign-out-alt fa-2x"></i>
+			</a> <a class="header__link" href="login.do"> <i
+				class="fas fa-user-check fa-2x"></i>
+			</a> <a class="header__link" href="join.do"> <i
+				class="fas fa-shopping-cart fa-2x"></i> <i></i>
+			</a>
+		</div>
+	</header>
+
+	<div class="map-wrap wrap">
+		<nav class="nav">
+			<!-- 로고 -->
+			<div class="logo-column">
+				<i class="fas fa-dumbbell fa-2x"></i>
+				<p>OMSR</p>
+			</div>
+			<!-- 검색창 -->
+			<form class="search-column">
+				<div class="search-icon">
+					<div class="search-search__btn" onclick="openSearch()">
+						<i class="fas fa-search fa-2x"></i>
+					</div>
+				</div>
+
+				<div id="search-wrap">
+					<div class="search-box">
+						<input class="search__input" type="text" />
+						<button class="search-input__btn">
+							<i class="fas fa-search fa-2x"></i>
+						</button>
+						<div class="search-close__btn" onclick="closeSearch()">
+							<i class="fas fa-times fa-2x"></i>
+						</div>
+					</div>
+					<div class="search-info">
+						<h3 class="search-info__title">최근 검색어</h3>
+						<ul class="search-info__list">
+							<li class="search-info__words">언더아머</li>
+							<li class="search-info__words">언더아머</li>
+							<li class="search-info__words">언더아머</li>
+							<!-- 10개 까지만 검색 -->
+						</ul>
+					</div>
+				</div>
+			</form>
+			<!-- 카테고리 -->
+			<div class="category">
+				<ul class="category-list">
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>BRAND</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="">나이키</a></li>
+							<li><a href="">아디다스</a></li>
+							<li><a href="">언더아머</a></li>
+						</ul></li>
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>MEN</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="products-list.do">상의</a></li>
+							<li><a href="products-list.do">하의</a></li>
+						</ul></li>
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>WOMEN</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="products-list.do">상의</a></li>
+							<li><a href="products-list.do">하의</a></li>
+						</ul></li>
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>MORE</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="faq.do">FAQ</a></li>
+							<li><a href="map.do">LOCATION</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="store-info">
+
+			<h3 class="store-info__title">매장 위치 정보</h3>
+
+			<div class="store-info__row">
+				<i class="fas fa-map-marker-alt fa-2x"></i>
+				<h5 class="store-info__subtitle">대전 본점</h5>
+			</div>
+			<div class="map-box">
+				<div id="map" style="width: 100%; height: 350px;"></div>
+			</div>
+			
+			<div class="store-info__row">
+				<i class="fas fa-map-marker-alt fa-2x"></i>
+				<h5 class="store-info__subtitle">대전 2호점 (NC 백화점 오픈예정...)</h5>
+			</div>
+		</div>
+	</div>
+	<footer id="page_footer">
+		<div class="footer-wrap">
+			<div class="footer__title">GYM WEAR STORE</div>
+			<div class="footer__contents">
+				Copyright © GYM WEAR STORE 2022 <br /> Tel : 010-2724-7561 Fax :
+				043-212-7561 <br /> e-Mail : monocolor93@gmail.com <br /> 갤러리아 2F
+				스포츠웨어 GYM WEAR STORE
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e4e5d7deb5fafa99aae32a99dcfd2b0"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(36.35176, 127.37815), // 지도의 중심좌표
+			level : 4
+		// 지도의 확대 레벨
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+		imageOption = {
+			offset : new kakao.maps.Point(27, 69)
+		}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+				imageOption), markerPosition = new kakao.maps.LatLng(36.35176,
+				127.37815); // 마커가 표시될 위치입니다
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			position : markerPosition,
+			image : markerImage
+		// 마커이미지 설정 
+		});
+
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+
+		// 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		var content = '<div class="customoverlay">'
+				+ '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">'
+				+ '    <span class="title">갤러리아백화</span>' + '  </a>' + '</div>';
+
+		// 커스텀 오버레이가 표시될 위치입니다 
+		var position = new kakao.maps.LatLng(36.35176, 127.37815);
+
+		// 커스텀 오버레이를 생성합니다
+		var customOverlay = new kakao.maps.CustomOverlay({
+			map : map,
+			position : position,
+			content : content,
+			yAnchor : 1
+		});
+	</script>
+	
+	
+	<!-- body 끝 -->
+	<script>
+		$(function() {
+		});
+		function openSearch() {
+			if ($("#search-wrap").is(":hidden")) {
+				$("#search-wrap").show();
+			} else {
+				$("#search-wrap").hide();
+			}
+		}
+
+		function closeSearch() {
+			$("#search-wrap").hide();
+		}
+
+		function fn_logout() {
+			let alarm = confirm("로그아웃 하시겠습니까?");
+			if (alarm) {
+				sessionStorage.removeItem("mem_id");
+				alert("로그아웃  하였습니다. 로그인 페이지로 이동합니다.");
+				location.href = "/gymWearStore/login.do";
+			} else {
+				alert("로그아웃을 취소하셨습니다.");
+			}
+		}
+	</script>
+
+	<script src="https://kit.fontawesome.com/6478f529f2.js"
+		crossorigin="anonymous"></script>
+</body>
+</html>

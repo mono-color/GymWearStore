@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="./images/main-icon.png" />
+<link rel="stylesheet" href="./css/style.css" />
+<meta charset="UTF-8" />
+<title>상품목록 | Gym Wear Store</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+	
+</script>
+</head>
+
+<body class="home-body">
+	<header id="page-header">
+		<div class="page-header-column">
+			<a class="header__link" href="home.do"> <i
+				class="fas fa-dumbbell fa-2x"></i>
+				<p>OMSR</p>
+			</a>
+		</div>
+		<div class="page-header-column">
+			<h1 class="home-page__name">Gym Wear Store</h1>
+		</div>
+		<div class="page-header-column">
+			<a class="header__link" href="login.do" onclick="fn_logout()"> <i
+				class="fas fa-sign-out-alt fa-2x"></i>
+			</a> <a class="header__link" href="login.do"> <i
+				class="fas fa-user-check fa-2x"></i>
+			</a> <a class="header__link" href="join.do"> <i
+				class="fas fa-shopping-cart fa-2x"></i> <i></i>
+			</a>
+		</div>
+	</header>
+	<div class="products-wrap wrap">
+		<nav class="nav">
+			<!-- 로고 -->
+			<div class="logo-column">
+				<i class="fas fa-dumbbell fa-2x"></i>
+				<p>OMSR</p>
+			</div>
+			<!-- 검색창 -->
+			<form class="search-column">
+				<div class="search-icon">
+					<div class="search-search__btn" onclick="openSearch()">
+						<i class="fas fa-search fa-2x"></i>
+					</div>
+				</div>
+
+				<div id="search-wrap">
+					<div class="search-box">
+						<input class="search__input" type="text" />
+						<button class="search-input__btn">
+							<i class="fas fa-search fa-2x"></i>
+						</button>
+						<div class="search-close__btn" onclick="closeSearch()">
+							<i class="fas fa-times fa-2x"></i>
+						</div>
+					</div>
+					<div class="search-info">
+						<h3 class="search-info__title">최근 검색어</h3>
+						<ul class="search-info__list">
+							<li class="search-info__words">언더아머</li>
+							<li class="search-info__words">언더아머</li>
+							<li class="search-info__words">언더아머</li>
+							<!-- 10개 까지만 검색 -->
+						</ul>
+					</div>
+				</div>
+			</form>
+			<!-- 카테고리 -->
+			<div class="category">
+				<ul class="category-list">
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>BRAND</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="dum-data.do">HDEX</a></li>
+							<li><a href="">아디다스</a></li>
+							<li><a href="">언더아머</a></li>
+						</ul></li>
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>MEN</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="products-list.do">상의</a></li>
+							<li><a href="products-list.do">하의</a></li>
+						</ul></li>
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>WOMEN</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="products-list.do">상의</a></li>
+							<li><a href="products-list.do">하의</a></li>
+						</ul></li>
+					<li class="category-list__column"><a
+						class="category-list__btn" href=""><span>MORE</span></a>
+						<ul class="category-list__btn-list">
+							<li><a href="faq.do">FAQ</a></li>
+							<li><a href="map.do">LOCATION</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="prodList-page__main">
+			<div class="prodList-page">
+				<div class="prodList-page__title">
+					<h1>상품 목록</h1>
+				</div>
+				<table class="product-list-table">
+					<tbody class="prod-tbody">
+						<!-- <td>
+							<div class="product-info">
+								<div class="product-info__img">
+									<img src="'+ prodParse[i].img +'" />
+								</div>
+								<div class="product-info__name">
+									<h3>'+ prodParse[i].name +'</h3>
+								</div>
+								<div class="product-info__price">
+									<h5>'+ prodParse[i].price +'</h5>
+								</div>
+							</div>
+						</td> -->
+						<!-- 상품목록 -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+	
+	
+
+	<footer id="page_footer">
+		<div class="footer-wrap">
+			<div class="footer__title">GYM WEAR STORE</div>
+			<div class="footer__contents">
+				Copyright © GYM WEAR STORE 2022 <br /> Tel : 010-2724-7561 Fax :
+				043-212-7561 <br /> e-Mail : monocolor93@gmail.com <br /> 갤러리아 2F
+				스포츠웨어 GYM WEAR STORE
+			</div>
+		</div>
+	</footer>
+	<!-- body 끝 -->
+	<script>
+		$(function() {
+			prodDB();
+		});
+		
+		function prodDB() {
+			let prodList = localStorage.getItem("ProdDB");
+			let prodParse = JSON.parse(prodList);
+			
+			let output = "";
+			for (let i = 0; i < prodParse.length; i++) {
+				if (i % 3 === 0) {
+					output += "<tr>";
+				}
+				
+				output += '<td>';
+				output += '	<div class="product-info"  data-code="'+prodParse[i].code+'">';
+				output += '		<div class="product-info__img">';
+				output += '			<img'; 
+				output += '				src="'+ prodParse[i].img +'"/>';
+				output += '		</div>';
+				output += '		<div class="product-info__name">';
+				output += '			<h3>' + prodParse[i].name + '</h3>';
+				output += '		</div>';
+				output += '		<div class="product-info__price">';
+				output += '			<h5>' + prodParse[i].price + '</h5>';
+				output += '		</div>';
+				output += '	</div>';
+				output += '</td>';
+				if (i % 3 === 2) {
+					output += '</tr>';
+				}
+			}
+			$(".prod-tbody").append(output);
+			
+		}
+		
+		$(document).on('click','.product-info', function(e){
+			sessionStorage.setItem("tempCode", $(this).data('code')  ) ;
+			//sessionStorage.setItem("tempCode", tempCode);
+			location.href = "/gymWearStore/product.do";
+			console($(this).data('code'));
+			//alert(tempCode);
+		});  // 클릭이벤트 등록
+		
+/* 		function moveProd(tempCode){
+			sessionStorage.setItem("tempCode", tempCode);
+			location.href = "/gymWearStore/product.do";
+			alert(tempCode);
+		} */
+		
+
+		function openSearch() {
+			if ($("#search-wrap").is(":hidden")) {
+				$("#search-wrap").show();
+			} else {
+				$("#search-wrap").hide();
+			}
+		}
+
+		function closeSearch() {
+			$("#search-wrap").hide();
+		}
+
+		function fn_logout() {
+			let alarm = confirm("로그아웃 하시겠습니까?");
+			if (alarm) {
+				sessionStorage.removeItem("mem_id");
+				alert("로그아웃  하였습니다. 로그인 페이지로 이동합니다.");
+				location.href = "/gymWearStore/login.do";
+			} else {
+				alert("로그아웃을 취소하셨습니다.");
+			}
+		}
+	</script>
+
+	<script src="https://kit.fontawesome.com/6478f529f2.js"
+		crossorigin="anonymous"></script>
+</body>
+</html>

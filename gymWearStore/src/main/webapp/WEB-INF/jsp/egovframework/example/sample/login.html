@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="./css/style.css" />
+<link rel="icon" type="image/x-icon" href="images/main-icon.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>로그인 | Gym Wear Store</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+	window.onload = function() {
+		let mem_id_tag = document.getElementById("mem__id");
+		let mem_pw_tag = document.getElementById("mem__pw");
+		mem_id_tag.onclick = function() {
+			document.querySelector(".login_form label[for='mem__id']").classList.remove("warning");
+		}
+		mem_pw_tag.onclick = function() {
+			document.querySelector(".login_form label[for='mem__pw']").classList.remove("warning");
+		}
+	}
+
+	function login() {
+		let mem_id = document.getElementById("mem__id").value;
+		let mem_pw = document.getElementById("mem__pw").value;
+		/* console.log("mem_id::" + mem_id); */
+		let label_mem_id = document.querySelector("label[for='mem__id']");
+		let label_mem_pw = document.querySelector("label[for='mem__pw']");
+
+		if (mem_id === null || mem_id === undefined || mem_id === "") {
+			label_mem_id.classList.add("warning");
+			alert("아이디 또는 패스워드가 입력되지 않았습니다.");
+			return false;
+		} else if (mem_pw === null || mem_pw === undefined || mem_pw === "") {
+			label_mem_pw.classList.add("warning");
+			alert("아이디 또는 패스워드가 입력되지 않았습니다.");
+			return false;
+		} else {// 아이디 비번 입력 받았을 
+			let localStorage = window.localStorage;
+			if (!localStorage) {
+				alert("해당 브라우저는 로컬스토리지를 지원하지 않습니다.");
+				return;
+			}
+			let memberList = localStorage.getItem("memberList");
+			if (memberList === null || memberList === undefined
+					|| memberList === "") {
+				alert("회원목록을 불러오지 못하였습니다. 관리자에게 문의하세요.")
+			} else {// 아이디가 존재할 때
+				memberList = JSON.parse(memberList);
+				console.log("memberList:::", memberList);
+
+				for (let i = 0; i < memberList.length; i++) {
+					if (mem_id == memberList[i].mem_id) {
+						if (mem_pw == memberList[i].mem_pw) { // 아이디 비번 일치
+							sessionStorage.setItem("mem_id", mem_id);
+							location.href = "/gymWearStore/home.do";
+							return false;
+						} else {
+							alert("아이디 또는 패스워드가 올바르지 않습니다.");
+							return false;
+						}
+					}
+				}
+				alert("아이디가 존재하지 않습니다. 회원가입을 해주세요.");
+			}
+
+		}
+	}
+	function join() {
+		location.href = "/gymWearStore/join.do";
+	}
+
+	function memberLogin() {
+		$("#login-form").show();
+		$("#nonmember-form").hide();
+	}
+
+	function nonmemberCheck() {
+		$("#login-form").hide();
+		$("#nonmember-form").show();
+	}
+</script>
+</head>
+<body class="index-body">
+	<header id="page-header">
+		<div class="page-header-column">
+			<a class="header__link" href="home.do"> <i
+				class="fas fa-dumbbell fa-2x"></i>
+				<p>OMSR</p>
+			</a>
+		</div>
+
+		<div class="page-header-title">
+			<h1 class="home-page__name">Gym Wear Store</h1>
+		</div>
+
+		<div class="page-header-column">
+			<a class="header__link" href="#" onclick="join()"> <i
+				class="fas fa-user-plus fa-2x"></i>
+			</a> <a class="header__link" href="find-account.do"><i
+				class="fas fa-user fa-2x"></i><i class="fas fa-search fa-xs"></i></a>
+		</div>
+	</header>
+
+	<div class="login-wrap wrap">
+		<div class="login-header">
+			<h1>로그인</h1>
+		</div>
+
+		<div class="login-selector">
+			<div class="login-selector-column">
+				<div class="login-column-title" onclick="memberLogin()">
+					<h3>회원 로그인</h3>
+				</div>
+			</div>
+			<div class="login-selector-column">
+				<div class="login-column-title" onclick="nonmemberCheck()">
+					<h3>비회원 조회</h3>
+				</div>
+			</div>
+		</div>
+
+		<!-- 회원 로그인 -->
+		<form action="#" method="" id="login-form">
+			<div class="login-form__input">
+				<label for="mem__id"><i class="fas fa-user-alt"></i></label> <input
+					id="mem__id" type="text" placeholder="아이디를 입력해 주세요." required />
+			</div>
+
+			<div class="login-form__input">
+				<label for="mem__pw"><i class="fas fa-lock"></i></label> <input
+					id="mem__pw" type="password" minlength="10"
+					placeholder="비밀번호를 입력해 주세요." required />
+			</div>
+
+			<div class="login-form-check">
+				<input id="remember-id" type="checkbox" /> <label for="remember-id">아이디
+					저장</label>
+			</div>
+			<div class="login-form-check">
+				<input id="remember-all" type="checkbox" /> <label
+					for="remember-all">자동 로그인</label>
+			</div>
+			<input id="login__btn" type="button" value="로그인" onclick="login()" />
+			<a href=".join.do"></a> <a class="find-account" href="#">Find
+				Account or Password</a>
+		</form>
+
+		<!-- 비회원 조회 -->
+		<form id="nonmember-form" style="display: none">
+			<div class="login-form__input">
+				<label for="nonmem__id"><i class="fas fa-user-alt"></i></label> <input
+					id="nonmem__id" type="text" placeholder="주문번호를 입력해 주세요." required />
+			</div>
+			<div class="login-form__input">
+				<label for="nonmem__pw"><i class="fas fa-lock"></i></label> <input
+					id="nonmem__pw" type="password" minlength="10"
+					placeholder="비밀번호를 입력해 주세요." required />
+			</div>
+
+			<input id="login__btn" type="submit" value="주문/배송 조회" /> <a
+				class="find-account" href="#">아이디 혹은 비밀번호 찾기</a>
+		</form>
+
+		<div class="login-input"></div>
+	</div>
+
+	<script src="https://kit.fontawesome.com/6478f529f2.js"
+		crossorigin="anonymous"></script>
+</body>
+</html>

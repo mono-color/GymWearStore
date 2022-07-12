@@ -1,0 +1,89 @@
+@import "reset.css";
+
+@import "variable.css";
+
+@import "animation.css";
+
+/* screens css */
+@import "screens/login.css";
+
+@import "screens/join.css";
+
+@import "screens/home.css";
+
+@import "screens/faq.css";
+
+@import "screens/products-list.css";
+
+@import "screens/product.css";
+
+/* components css */
+@import "components/header.css";
+
+@import "components/header-icon.css";
+
+@import "components/nav-bar.css";
+
+@import "components/search-form.css";
+
+@import "components/footer.css";
+
+@import "components/map.css";
+
+@import "components/products-list.css";
+
+
+
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a>i {
+	cursor: pointer;
+}
+
+body {
+	height: 100%
+}
+
+.index-body {
+	background-color: rgb(139, 139, 139);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	/* height: 1600px; */
+	/* 높이 100으로 바꾸기 */
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.home-body {
+	background-color: rgb(139, 139, 139);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	/* height: 500vh; */
+	/* 높이 100으로 바꾸기 */
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+	margin-top: 155px;
+}
+
+body #page-header {
+	z-index: 3;
+}
+
+body .wrap {
+	z-index: 1;
+}
+
+.wrap .nav {
+	z-index: 2;
+}
+
+.wrap .map-contents {
+	z-index: 1;
+}
+

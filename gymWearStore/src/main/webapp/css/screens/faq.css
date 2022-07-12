@@ -1,0 +1,125 @@
+.faq-wrap {
+	width: 1300px;
+	height: 1000px;
+}
+
+.faq-page__main {
+	padding-top: 200px;
+	width: 100%;
+	height: 700px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.faq-page {
+	width: 1280px;
+	height: 700px;
+}
+
+.faq-page__title {
+	width: 100%;
+	height: 100px;
+}
+
+.faq-page__title>h1 {
+	padding-top: 35px;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+/* 테이블 영역잡기 */
+#div_table {
+	width: 1280px;
+	height: 500px;
+	background-color: lightsalmon;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.faq-thead {
+	text-align: center;
+	height: 60px;
+}
+
+.faq-tbody {
+	
+}
+/* list */
+#div_table>table {
+	width: 80%;
+	height: 500px;
+	background-color: lightskyblue;
+}
+
+th {
+	font-size: 30px;
+	font-weight: 600;
+	padding-top: 10px;
+}
+
+td {
+	font-size: 25px;
+	padding: 10px 0px;
+}
+
+th, td {
+	
+	border-bottom: 2px solid lightslategrey;
+}
+
+.faq-tbody>tr:nth-child(3n) {
+	height : 20px
+}
+
+.div_paging {
+	width: 100%;
+	height: 100px;
+	background-color: lightcyan;
+}
+
+.div_paging_a {
+	width: 300px;
+	height: 30px;
+	background-color: lightpink;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.div_board_write {
+	width: 100px;
+	height: 50px;
+	background-color: limegreen;
+	position: relative;
+	left: 510px;
+	top: -30px;
+}
+
+.div_board_write>input {
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+}
+
+.contents, .content01, .content01_h1, #div_table, #div_table>table,
+	.div_paging, .div_paging_a, .div_board_write {
+	background-color: #fff;
+}
+
+/* ===============================================3차 contents 작업 e */
+/* 버튼클릭 액션 */
+.div_board_write>input:active {
+	transform: translate(2px, 2px);
+}
+
+/* 페이징  CSS처리 */
+.div_paging_a>a {
+	padding-left: 7px
+}
+
+.div_paging_a>a:hover {
+	color: lightskyblue;
+	font-weight: bold;
+}

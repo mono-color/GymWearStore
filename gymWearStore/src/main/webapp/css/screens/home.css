@@ -1,0 +1,14 @@
+.home-wrap {
+	width: 1300px;
+	height: 2000px;
+}
+
+.wrap {
+	background-color: white;
+}
+
+.home-main {
+	margin-top: 100px;
+	height: 100%;
+	width: 1300px;
+}

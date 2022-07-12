@@ -1,0 +1,7 @@
+.page-header-column:last-child > .header__link {
+  position: relative;
+}
+.page-header-column:last-child > .header__link:last-child > i:last-child {
+  position: absolute;
+  right: -10px;
+}

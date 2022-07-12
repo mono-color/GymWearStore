@@ -1,0 +1,85 @@
+/* 검색창 만들기 */
+.search-column {
+  width: 110px;
+  height: 100%;
+}
+.search-icon {
+  width: 110px;
+  height: 100%;
+  position: relative;
+}
+.search-icon:hover {
+  transform: scale(1.1);
+  color: var(--darkGray);
+}
+.search-search__btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+#search-wrap {
+  width: 450px;
+  height: 470px;
+  background-color: white;
+  border: var(--main-border);
+  border-top: 1px solid white;
+  display: none;
+}
+.search-box {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-bottom: var(--main-border);
+  border: 4px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  position: relative;
+}
+.search__input {
+  width: 300px;
+  margin-left: 30px;
+  border: 1px solid transparent;
+  padding: 7px;
+  transition: border-color 1s ease-in-out;
+}
+.search__input:focus {
+  outline: none;
+  border-bottom: 3px solid black;
+}
+.search-box button {
+  border: none;
+  background-color: transparent;
+}
+.search-input__btn,
+.search-close__btn {
+  cursor: pointer;
+}
+.search-input__btn:hover,
+.search-close__btn:hover {
+  transform: scale(1.1);
+  color: var(--darkGray);
+}
+.search-close__btn {
+  position: absolute;
+  right: 10px;
+}
+.search-info {
+  width: 100%;
+  padding: 0px 30px;
+  box-sizing: border-box;
+}
+.search-info__title {
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 20px;
+}
+.search-info__list {
+  padding: 20px 0px;
+}
+.search-info__words {
+  padding-bottom: 20px;
+}
